@@ -20,9 +20,23 @@ $characters = [
     <link href="styles.css" rel="stylesheet" type="text/css">
 </head>
 <body>
-<h1>Book</h1>
-<p>Description</p>
+<h1>
+    <?=
+    "Book is called '{$book['title']}' and was written by {$book['author']}";
+    ?>
+</h1>
+<p> 
+    <?=
+    "Description is something like this: {$book['description']}.";
+    ?>
+</p>
 <h2>Main Characters</h2>
-
+<ul>
+    <?php
+    foreach ($characters as $character) {
+        echo "<li> $character";
+    };
+    ?>
+</ul>
 </body>
 </html>
