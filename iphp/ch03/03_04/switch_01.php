@@ -1,5 +1,5 @@
 <?php
-$name = 'Arthur Dent';
+$name = 'Robot';
 
 switch ($name) {
     case 'Arthur Dent':

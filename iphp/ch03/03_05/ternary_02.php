@@ -1,5 +1,5 @@
 <?php
-$unit_cost = 20;
+$unit_cost = 30;
 
 $wholesale_price = $unit_cost ?: 25;
 
