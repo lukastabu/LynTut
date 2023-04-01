@@ -8,3 +8,8 @@ echo $a - $b . '<br>';
 echo $a * $b . '<br>';
 echo $a / $b . '<br>';
 
+$degF = 98.6;
+$degC = ($degF - 32) / 9 * 5;
+echo $degF . '&degF';
+echo '<br>';
+echo $degC . '&degC';
