@@ -8,15 +8,16 @@ $characters = [
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Sorting an array</title>
-    <link rel="stylesheet" href="../../ch07/07_02/styles.css" type="text/css">
-</head>
-<body>
-<h1>Main Characters</h1>
-<ul>
+    <head>
+        <meta charset="UTF-8">
+        <title>Sorting an array</title>
+        <link rel="stylesheet" href="../../ch07/07_02/styles.css" type="text/css">
+    </head>
+    <body>
+        <h1>Main Characters</h1>
+        <ul>
     <?php
+    rsort($characters);
     foreach ($characters as $name) {
         echo "<li>$name</li>";
     }
