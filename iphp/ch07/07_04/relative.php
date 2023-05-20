@@ -1,4 +1,6 @@
-<?php require './includes/copyright.php'; ?>
+<?php 
+set_include_path('C:\xampp\htdocs\projects\LynTut\iphp\ch07\07_04\includes');
+require './includes/copyright.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,8 +11,8 @@
 <body>
 <h1>Using the include_path</h1>
 <p>This paragraph is in the original file.</p>
-<?php include './includes/para.html'; ?>
+<?php include 'para.html'; ?>
 <p>This is also in the original file.</p>
-<p><?= lyn_copyright(2015) ;?> David Powers</p>
+<p><?= lyn_copyright(2022) ;?> Lukas</p>
 </body>
 </html>

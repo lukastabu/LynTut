@@ -1,3 +1,4 @@
+<?php $siteroot = '\projects\LynTut\iphp\ch07\07_03'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,6 @@
 <p>This is also in the original file.</p>
 <?php include_once './includes/para.html'; ?>
 <?php require './includes/copyright.php'; ?>
-<p><?= lyn_copyright(2015); ?> David Powers</p>
+<p><?= lyn_copyright(2022); ?> Lukas</p>
 </body>
 </html>
