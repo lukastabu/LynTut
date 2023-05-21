@@ -1,4 +1,3 @@
-<?php $siteroot = '\projects\LynTut\iphp\ch07\07_06\begin'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,27 +81,11 @@
 </div>
     </article>
     <!-- Featured Artists -->
-    <article id="comingtoevent">
-      <h2 class="highlight">Coming to the event?</h2>
-      <h3>Check out our mobile site</h3>
-      <p>Our mobile site contains schedules, and exhibit/ artist details, accessible simply by scanning QR codes located all around the venue exhibit halls.</p>
-      <p><img src="images/iphone.png" alt="Mobile phone"></p>
-      <p><a class="link" href="#">Roux mobile</a></p>
-    </article>
-    <!-- Coming to event --> 
+    <?php include './includes/comingtoevent.php' ; ?>
+  <!-- Coming to event -->
   </aside>
   <!-- Sidebar -->
-  <footer>
-    <div class="branding"> <img src="images/ralogo_monogram.png" alt="Logo"> </div>
-    <div class="description">Join over 500 hundred of the most creative and brilliant minds of art colleges all around the world for three days of lectures by world-renowned art scholars and artists.</div>
-    <nav>
-      <ol>
-        <li><a href="http://rouxacademy.com/about/about.htm">About the Roux Academy</a></li>
-        <li><a href="http://rouxacademy.com/privacy.htm">Privacy Policy</a></li>
-        <li><a href="http://rouxacademy.com/index.htm">Visit our website</a></li>
-      </ol>
-    </nav>
-  </footer>
+  <?php include './includes/footer.php' ; ?>
 </div>
 </body>
 </html>
