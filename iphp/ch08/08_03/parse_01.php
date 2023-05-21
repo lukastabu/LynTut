@@ -1,5 +1,6 @@
 <?php
-$name = 'Arthur Dent';
+$n = ['Arthur Dent', 'Marvin', 'Slart'];
+$name = $n[rand(0, 2)];
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -16,7 +17,7 @@ if ($name == 'Arthur Dent') {
 } elseif ($name == 'Marvin') {
     echo "<p>I've got this terrible pain in all the diodes down my left-hand side.</p>";
 } else {
-    echo '<p>Is that really a piece of fairy cake?</p>'
+    echo '<p>Is that really a piece of fairy cake?</p>';
 }
 ?>
 </body>

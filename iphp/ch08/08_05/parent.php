@@ -1,6 +1,6 @@
 <?php
-$siteroot = '/introducingphp/ch08/08_05';
-require './includes/copywrite.php'; ?>
+$siteroot = '/projects/LynTut/iphp/ch08/08_05';
+require './includes/copyright.php'; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +13,6 @@ require './includes/copywrite.php'; ?>
 <p>This paragraph is in the original file.</p>
 <?php include './includes/para.html'; ?>
 <p>This is also in the original file.</p>
-<p><?= lyn_copyright(2015) ;?> David Powers</p>
+<p><?= lyn_copyright(2022) ;?> LukasT</p>
 </body>
 </html>

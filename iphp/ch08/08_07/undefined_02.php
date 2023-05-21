@@ -13,7 +13,7 @@ $descriptions = [
     <link rel="stylesheet" href="styles.css" type="text/css">
 </head>
 <body>
-<h1>Undefined Constant</h1>
-<p>Marvin is <?= $descriptions[Marvin]; ?>.</p>
+<h1>Undefined (NOW DEFINED) Constant</h1>
+<p>Marvin is <?= $descriptions['Marvin']; ?>.</p>
 </body>
 </html>
