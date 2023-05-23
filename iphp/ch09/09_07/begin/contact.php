@@ -4,13 +4,15 @@ $missing = [];
 if (isset($_POST['send'])) {
     $expected = ['name', 'email', 'comments'];
     $required = ['name', 'comments'];
-    $to = 'David Powers <david@example.com>';
-    $subject = 'Feedback from online form';
+
+    $to = ' Sys Admin <admin@system.com>';
+    $subject = 'Comment from form';
     $headers = [];
-    $headers[] = 'From: webmaster@example.com';
-    $headers[] = 'Cc: another@example.com';
+    $headers[] = 'From: webmaster@system.com';
+    $headers[] = 'cc: copymail@system.com, bcc: ceo@system.com';
     $headers[] = 'Content-type: text/plain; charset=utf-8';
     $authorized = null;
+    
     require './includes/process_mail.php';
 }
 ?>
@@ -48,6 +50,8 @@ if (isset($_POST['send'])) {
     <label for="email">Email:
         <?php if ($missing && in_array('email', $missing)) : ?>
             <span class="warning">Please enter your email address</span>
+        <?php elseif (isset($errors['email'])) : ?>
+            <span class="warning">Email address is invalid</span>
         <?php endif; ?>
     </label>
     <input type="email" name="email" id="email"

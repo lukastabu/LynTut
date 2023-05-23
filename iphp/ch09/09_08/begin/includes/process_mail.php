@@ -1,4 +1,5 @@
 <?php
+$mailSent= false;
 // Assume the input contains nothing suspect
 $suspect = false;
 // Regular expression to search for suspect phrases
@@ -46,5 +47,24 @@ if (!$suspect) :
     // If no errors, create headers and message body
     if (!$errors && !$missing) :
         $headers = implode("\r\n", $headers);
+        // Building message body
+        $message = '';
+        foreach ($expected as $field) :
+            if (isset($$field) && !empty($$field)) {
+                $var = $$field;
+            } else {
+                $var = 'Not defined';
+            }
+            // if array - make into comma-separated string
+            if (is_array($var)) {
+                $var = implode(', ', $var);
+            }
+            // reaplacing underscores with spaces in the field names
+            $field = str_replace('_', ' ', $field);
+            // building an actual message body
+            $message .= ucfirst($field) . ": $var\r\n\r\n";
+        endforeach;
+        $message = wordwrap($message, 70);
+        $mailSent = true;
     endif;
 endif;

@@ -4,6 +4,15 @@ $missing = [];
 if (isset($_POST['send'])) {
     $expected = ['name', 'email', 'comments'];
     $required = ['name', 'comments'];
+
+    $to = ' Sys Admin <admin@system.com>';
+    $subject = 'Comment from form';
+    $headers = [];
+    $headers[] = 'From: webmaster@system.com';
+    $headers[] = 'cc: copymail@system.com, bcc: ceo@system.com';
+    $headers[] = 'Content-type: text/plain; charset=utf-8';
+    $authorized = null;
+
     require './includes/process_mail.php';
 }
 ?>

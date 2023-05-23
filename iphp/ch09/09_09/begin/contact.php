@@ -10,8 +10,12 @@ if (isset($_POST['send'])) {
     $headers[] = 'From: webmaster@example.com';
     $headers[] = 'Cc: another@example.com';
     $headers[] = 'Content-type: text/plain; charset=utf-8';
-    $authorized = null;
+    $authorized = '-fadmin@system.com';
     require './includes/process_mail.php';
+    if ($mailSent) {
+        header('Location: thanks.php');
+        exit;
+    }
 }
 ?>
 <!doctype html>
@@ -24,7 +28,7 @@ if (isset($_POST['send'])) {
 
 <body>
 <h1>Contact Us</h1>
-<?php if ($_POST && $suspect) : ?>
+<?php if ($_POST && ($suspect || isset($errors['mailfail']))) : ?>
 <p class="warning">Sorry, your mail couldn't be sent.</p>
 <?php elseif ($errors || $missing) : ?>
 <p class="warning">Please fix the item(s) indicated</p>
@@ -76,15 +80,5 @@ if (isset($_POST['send'])) {
     <input type="submit" name="send" id="send" value="Send Comments">
   </p>
 </form>
-<pre>
-    <?php
-    if ($_POST && $mailSent) {
-        echo "Message: \n\n";
-        echo htmlentities($message);
-        echo "Headers: \n\n";
-        echo htmlentities($headers);
-    }
-    ?>
-</pre>
 </body>
 </html>
