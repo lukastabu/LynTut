@@ -2,7 +2,7 @@
 $errors = [];
 $missing = [];
 if (isset($_POST['send'])) {
-    $expected = ['name', 'email', 'comments'];
+    $expected = ['name', 'email', 'comments', 'extras'];
     $required = ['name', 'comments'];
     $to = 'David Powers <david@example.com>';
     $subject = 'Feedback from online form';
@@ -11,6 +11,13 @@ if (isset($_POST['send'])) {
     $headers[] = 'Cc: another@example.com';
     $headers[] = 'Content-type: text/plain; charset=utf-8';
     $authorized = null;
+    if (!isset($_POST['extras'])) {
+      $_POST['extras'] = [];
+    }
+    $minimumChecked = 2;
+    if (count($_POST['extras']) < $minimumChecked) {
+      $errors['extras'] = true;
+    }
     require './includes/process_mail.php';
 }
 ?>
@@ -73,14 +80,36 @@ if (isset($_POST['send'])) {
           ?></textarea>
   </p>
   <fieldset>
-    <legend>Optional Extras</legend>
-    <input type="checkbox" name="extras" value="sun roof" id="extras_0">
+    <legend>Optional Extras
+      <?php if (isset($errors['extras'])) : ?>
+        <span class="warning">At least <?= $minimumChecked; ?> extras need to be selected</span>
+      <?php endif; ?>
+    </legend>
+    <input type="checkbox" name="extras[]" value="sun roof" id="extras_0"
+      <?php
+      if ($_POST && in_array('sun roof', $extras)) {
+        echo 'checked';
+      }
+      ?>
+    >
       <label for="extras_0">Sun roof</label>
       <br>
-    <input type="checkbox" name="extras" value="aircon" id="extras_1">
+    <input type="checkbox" name="extras[]" value="aircon" id="extras_1"
+      <?php
+      if ($_POST && in_array('aircon', $extras)) {
+        echo 'checked';
+      }
+      ?>
+    >
       <label for="extras_1">Air conditioning</label>
       <br>
-    <input type="checkbox" name="extras" value="automatic" id="extras_2">
+    <input type="checkbox" name="extras[]" value="automatic" id="extras_2"
+      <?php
+      if ($_POST && in_array('automatic', $extras)) {
+        echo 'checked';
+      }
+      ?>
+    >
       <label for="extras_2">Automatic transmission</label>
   </fieldset>
   <p>

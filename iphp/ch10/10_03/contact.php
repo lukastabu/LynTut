@@ -2,8 +2,8 @@
 $errors = [];
 $missing = [];
 if (isset($_POST['send'])) {
-    $expected = ['name', 'email', 'comments'];
-    $required = ['name', 'comments'];
+    $expected = ['name', 'email', 'comments', 'terms'];
+    $required = ['name', 'comments', 'terms'];
     $to = 'David Powers <david@example.com>';
     $subject = 'Feedback from online form';
     $headers = [];
@@ -11,6 +11,9 @@ if (isset($_POST['send'])) {
     $headers[] = 'Cc: another@example.com';
     $headers[] = 'Content-type: text/plain; charset=utf-8';
     $authorized = null;
+    if (!isset($_POST['terms'])) {
+        $_POST['terms'] = '';
+    }
     require './includes/process_mail.php';
 }
 ?>
@@ -73,8 +76,18 @@ if (isset($_POST['send'])) {
           ?></textarea>
   </p>
   <p>
-    <input type="checkbox" name="terms" id="terms" value="agreed">
-      <label for="terms">I agree to the terms and conditions</label>
+    <input type="checkbox" name="terms" id="terms" value="agreed"
+    <?php
+    if ($_POST && $terms == 'agreed') {
+        echo 'checked';
+    }
+    ?>
+    >
+      <label for="terms">I agree to the terms and conditions
+        <?php if ($missing && in_array('terms', $missing)) :?>
+            <span class="warning">Please read and agree with our terms</span>
+        <?php endif; ?>
+      </label>
   </p>
   <p>
     <input type="submit" name="send" id="send" value="Send Comments">

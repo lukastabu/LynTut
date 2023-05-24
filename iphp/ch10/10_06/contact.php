@@ -2,7 +2,7 @@
 $errors = [];
 $missing = [];
 if (isset($_POST['send'])) {
-    $expected = ['name', 'email', 'comments'];
+    $expected = ['name', 'email', 'comments', 'format'];
     $required = ['name', 'comments'];
     $to = 'David Powers <david@example.com>';
     $subject = 'Feedback from online form';
@@ -11,6 +11,13 @@ if (isset($_POST['send'])) {
     $headers[] = 'Cc: another@example.com';
     $headers[] = 'Content-type: text/plain; charset=utf-8';
     $authorized = null;
+    if (!isset($_POST['format'])) {
+      $_POST['format'] = [];
+    }
+    $minimumSelected = 2;
+    if (count($_POST['format']) < $minimumSelected) {
+      $errors['format'] = true;
+    }
     require './includes/process_mail.php';
 }
 ?>
@@ -73,11 +80,33 @@ if (isset($_POST['send'])) {
           ?></textarea>
   </p>
   <p>
-    <label for="format">Select the formats you require:</label>
-    <select name="format" id="format" size="3" multiple>
-      <option value="PDF">PDF</option>
-      <option value="ePub">ePub</option>
-      <option value="mobi">MOBI</option>
+    <label for="format">Select the formats you require:
+      <?php if (isset($errors['format'])) : ?>
+        <span class="warning">At least <?= $minimumSelected; ?> format options need to be selected</span>
+      <?php endif; ?>
+    </label>
+    <select name="format[]" id="format" size="3" multiple>
+      <option value="PDF"
+        <?php
+          if ($_POST && in_array('PDF', $format)) {
+            echo 'selected';
+          }
+        ?>
+      >PDF</option>
+      <option value="ePub"
+        <?php
+          if ($_POST && in_array('ePub', $format)) {
+            echo 'selected';
+          }
+        ?>
+      >ePub</option>
+      <option value="mobi"
+        <?php
+          if ($_POST && in_array('mobi', $format)) {
+            echo 'selected';
+          }
+        ?>
+      >MOBI</option>
     </select>
   </p>
   <p>

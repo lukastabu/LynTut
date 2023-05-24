@@ -2,8 +2,8 @@
 $errors = [];
 $missing = [];
 if (isset($_POST['send'])) {
-    $expected = ['name', 'email', 'comments'];
-    $required = ['name', 'comments'];
+    $expected = ['name', 'email', 'comments', 'os'];
+    $required = ['name', 'comments', 'os'];
     $to = 'David Powers <david@example.com>';
     $subject = 'Feedback from online form';
     $headers = [];
@@ -73,12 +73,41 @@ if (isset($_POST['send'])) {
           ?></textarea>
   </p>
   <p>
-    <label for="os">Operating system</label>
+    <label for="os">Operating system
+      <?php
+        if ($missing && in_array('os', $missing)) : ?>
+          <span class="warning">You have to select an OS</span>
+      <?php endif; ?>
+    </label>
     <select name="os" id="os">
-      <option value="Not selected" selected>Please make a selection</option>
-      <option value="Linux">Linux</option>
-      <option value="Mac">Mac OS X</option>
-      <option value="Windows">Windows</option>
+      <option value=""
+        <?php
+          if (!$_POST || $os == '') {
+            echo 'selected';
+          }
+        ?>
+      >Please make a selection</option>
+      <option value="Linux"
+        <?php
+          if ($_POST && $os == 'Linux') {
+            echo 'selected';
+          }
+        ?>
+      >Linux</option>
+      <option value="Mac"
+        <?php
+          if ($_POST && $os == 'Mac') {
+            echo 'selected';
+          }
+        ?>
+      >Mac OS X</option>
+      <option value="Windows"
+        <?php
+          if ($_POST && $os == 'Windows') {
+            echo 'selected';
+          }
+        ?>
+      >Windows</option>
     </select>
   </p>
   <p>
